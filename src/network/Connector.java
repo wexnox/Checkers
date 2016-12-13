@@ -1,6 +1,7 @@
 package network;
 
 import java.io.BufferedReader;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import javax.swing.JOptionPane;
 
 import checkersboard.CheckersBoard;
 import checkersboard.PreferenceController;
+import menu.AlertDialog;
 
 public class Connector {
 
@@ -69,6 +71,7 @@ public class Connector {
 					JOptionPane.WARNING_MESSAGE);
 			checkersBoard.networkCleanUp();
 		} catch (IOException e) {
+			new AlertDialog(checkersBoard, "Save Sucessful!", AlertDialog.ICON_INFO).showAndWait();
 			JOptionPane.showMessageDialog(checkersBoard, "An error occured while connecting to the host", "Error",
 					JOptionPane.WARNING_MESSAGE);
 			checkersBoard.networkCleanUp();
