@@ -10,8 +10,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.StringTokenizer;
 
-import javax.swing.JOptionPane;
-
+import javafx.stage.Stage;
 import checkersboard.CheckersBoard;
 import checkersboard.PreferenceController;
 import menu.AlertDialog;
@@ -36,6 +35,7 @@ public class Connector {
 	private final String OP_ENDTURN = "4";
 	
 	public static final String DELIMETER = ""+(char)7;
+	private Stage stage;
 
 	private PrintWriter out;
 	private BufferedReader in;
@@ -67,13 +67,13 @@ public class Connector {
 				sendSetup(preferences.getLocalUsername() + ",0");
 			}
 		} catch (UnknownHostException e) {
-			JOptionPane.showMessageDialog(checkersBoard, "Unknown host, please check your spelling", "Unknown Host",
-					JOptionPane.WARNING_MESSAGE);
+//			JOptionPane.showMessageDialog(checkersBoard, "Unknown host, please check your spelling", "Unknown Host",
+//					JOptionPane.WARNING_MESSAGE);
 			checkersBoard.networkCleanUp();
 		} catch (IOException e) {
-			new AlertDialog(checkersBoard, "Save Sucessful!", AlertDialog.ICON_INFO).showAndWait();
-			JOptionPane.showMessageDialog(checkersBoard, "An error occured while connecting to the host", "Error",
-					JOptionPane.WARNING_MESSAGE);
+			new AlertDialog(stage, "An error occured while connecting to the host!", AlertDialog.ICON_INFO).showAndWait();
+//			JOptionPane.showMessageDialog(checkersBoard, "An error occured while connecting to the host", "Error",
+//					JOptionPane.WARNING_MESSAGE);
 			checkersBoard.networkCleanUp();
 		}
 	}
@@ -184,11 +184,11 @@ public class Connector {
 			} catch (IOException e) {
 				if (showDisconnectError) {
 					if (player == HOST) {
-						JOptionPane.showMessageDialog(checkersBoard, "The client has been disconnected",
-								"Lost connection", JOptionPane.WARNING_MESSAGE);
+//						JOptionPane.showMessageDialog(checkersBoard, "The client has been disconnected",
+//								"Lost connection", JOptionPane.WARNING_MESSAGE);
 					} else {
-						JOptionPane.showMessageDialog(checkersBoard, "The host has been disconnected",
-								"Lost connection", JOptionPane.WARNING_MESSAGE);
+//						JOptionPane.showMessageDialog(checkersBoard, "The host has been disconnected",
+//								"Lost connection", JOptionPane.WARNING_MESSAGE);
 					}
 				}
 				checkersBoard.networkCleanUp();
