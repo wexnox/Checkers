@@ -1,29 +1,29 @@
-package checkers;
+package checkersboard;
 
-import static checkers.CheckersGame.SQUARE_SIZE;
+import static checkersboard.CheckersGame.SQUARE_SIZE;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 
 public class Pieces extends StackPane {
-	
+
 	private PieceType type;
-	
+
 	private double mouseX, mouseY;
 	private double oldX, oldY;
-	
+
 	public PieceType getType() {
 		return type;
 	}
-	
+
 	public double getOldX() {
 		return oldX;
 	}
-	
+
 	public double getOldY() {
 		return oldY;
 	}
-	
+
 	public Pieces (PieceType type, int x, int y) {
 		this.type = type;
 		
@@ -37,16 +37,6 @@ public class Pieces extends StackPane {
 		
 		regularPiece.setTranslateX((SQUARE_SIZE - SQUARE_SIZE * 0.3200 * 2) / 2);
 		regularPiece.setTranslateY((SQUARE_SIZE - SQUARE_SIZE * 0.30 * 2) / 2);
-		
-
-	    private void initializeContent(AnchorPane root) {
-	        Image image = new Image(
-	                "http://takeinsocialmedia.com/wp-content/uploads/2014/05/landscape-art-painting-wallpaper-images-photos-0517193352.jpg"
-	        );
-	        ceiling_image = new ImageView(image);
-	        ceiling_image.setClip(ceiling);
-	        root.getChildren().add(ceiling_image);
-	    }
 		
 		Ellipse kingPiece = new Ellipse (SQUARE_SIZE * 0.3200, SQUARE_SIZE * 0.30);
 			kingPiece.setFill(type == PieceType.KING_RED 
@@ -71,14 +61,14 @@ public class Pieces extends StackPane {
 			relocate (e.getSceneX() - mouseX + oldX, e.getSceneY() - mouseY + oldY);
 		});
 	}
-	
-	public void movement (int x, int y) {
+
+	public void movement(int x, int y) {
 		oldX = x * SQUARE_SIZE;
 		oldY = y * SQUARE_SIZE;
-		relocate (oldX, oldY);
+		relocate(oldX, oldY);
 	}
-	
+
 	public void cancelMove() {
-		relocate (oldX, oldY);
+		relocate(oldX, oldY);
 	}
 }

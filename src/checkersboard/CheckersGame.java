@@ -1,4 +1,4 @@
-package checkers;
+package checkersboard;
 
 import javafx.application.Application;
 import javafx.scene.Group;

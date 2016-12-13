@@ -1,4 +1,4 @@
-package checkers;
+package checkersboard;
 
 public class MovementOutcome {
  

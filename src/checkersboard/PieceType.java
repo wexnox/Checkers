@@ -1,4 +1,4 @@
-package checkers;
+package checkersboard;
 
 public enum PieceType {
 	REGULAR_RED(1),
