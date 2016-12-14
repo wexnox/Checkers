@@ -1,5 +1,7 @@
 package checkersboard;
 
+import constants.MovementType;
+
 public class MovementOutcome {
  
 	private MovementType type;

@@ -18,63 +18,63 @@ import javafx.stage.StageStyle;
 
 public class AlertDialog extends Stage {
 
-	private final int WIDTH_DEFAULT = 300;
+    private final int WIDTH_DEFAULT = 300;
 
-	public static final int ICON_INFO = 0;
-	public static final int ICON_ERROR = 1;
+    public static final int ICON_INFO = 0;
+    public static final int ICON_ERROR = 1;    
 
-	public AlertDialog(Stage owner, String msg, int type) {
-		setResizable(false);
-		initModality(Modality.APPLICATION_MODAL);
-		initStyle(StageStyle.TRANSPARENT);
+    public AlertDialog(Stage owner, String msg, int type) {
+        setResizable(false);
+        initModality(Modality.APPLICATION_MODAL);
+        initStyle(StageStyle.TRANSPARENT);
 
-		Label label = new Label(msg);
-		label.setWrapText(true);
-		label.setGraphicTextGap(20);
-		label.setGraphic(new ImageView(getImage(type)));
+        Label label = new Label(msg);
+        label.setWrapText(true);
+        label.setGraphicTextGap(20);
+        label.setGraphic(new ImageView(getImage(type)));
 
-		Button button = new Button("OK");
-		button.setOnAction(new EventHandler() {
-			@Override
-			public void handle(ActionEvent arg0) {
-				AlertDialog.this.close();
-			}
-		});
+        Button button = new Button("OK");
+        button.setOnAction(new EventHandler(){
+            @Override
+            public void handle(ActionEvent arg0) {
+                AlertDialog.this.close();
+            }
+        });
 
-		BorderPane borderPane = new BorderPane();
-		borderPane.getStylesheets().add(getClass().getResource("alert.css").toExternalForm());
-		borderPane.setTop(label);
+        BorderPane borderPane = new BorderPane();
+        borderPane.getStylesheets().add(getClass().getResource("alert.css").toExternalForm());        
+        borderPane.setTop(label);
 
-		HBox hbox2 = new HBox();
-		hbox2.setAlignment(Pos.CENTER);
-		hbox2.getChildren().add(button);
-		borderPane.setBottom(hbox2);
+        HBox hbox2 = new HBox();
+        hbox2.setAlignment(Pos.CENTER);
+        hbox2.getChildren().add(button);
+        borderPane.setBottom(hbox2);
 
-		// calculate width of string
-		final Text text = new Text(msg);
-		text.snapshot(null, null);
-		// + 20 because there is padding 10 left and right
-		int width = (int) text.getLayoutBounds().getWidth() + 40;
+        // calculate width of string
+        final Text text = new Text(msg);
+        text.snapshot(null, null);
+        // + 20 because there is padding 10 left and right
+        int width = (int) text.getLayoutBounds().getWidth() + 40;
 
-		if (width < WIDTH_DEFAULT)
-			width = WIDTH_DEFAULT;
+        if (width < WIDTH_DEFAULT)
+            width = WIDTH_DEFAULT;
 
-		int height = 100;
+        int height = 100;
 
-		final Scene scene = new Scene(borderPane, width, height);
-		scene.setFill(Color.TRANSPARENT);
-		setScene(scene);
+        final Scene scene = new Scene(borderPane, width, height);
+        scene.setFill(Color.TRANSPARENT);
+        setScene(scene);
 
-		// make sure this stage is centered on top of its owner
-		setX(owner.getX() + (owner.getWidth() / 2 - width / 2));
-		setY(owner.getY() + (owner.getHeight() / 2 - height / 2));
-	}
+        // make sure this stage is centered on top of its owner
+        setX(owner.getX() + (owner.getWidth() / 2 - width / 2));
+        setY(owner.getY() + (owner.getHeight() / 2 - height / 2));
+    }
 
-	private Image getImage(int type) {
-		if (type == ICON_ERROR)
-			return new Image(getClass().getResourceAsStream("/images/error.png"));
-		else
-			return new Image(getClass().getResourceAsStream("/images/info.png"));
-	}
+    private Image getImage(int type) {
+        if (type == ICON_ERROR)
+            return new Image(getClass().getResourceAsStream("/images/error.png"));
+        else
+            return new Image(getClass().getResourceAsStream("/images/info.png"));
+    }
 
 }

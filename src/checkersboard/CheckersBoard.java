@@ -79,12 +79,12 @@ public class CheckersBoard extends Rectangle implements KeyListener {
 		this.pieces = pieces;
 	}
 
-	public CheckersBoard(boolean light, int x, int y) {
-		setWidth(CheckersGame.SQUARE_SIZE);
-		setHeight(CheckersGame.SQUARE_SIZE);
-
+	public CheckersBoard (boolean light, int x, int y) {
+		setWidth (CheckersGame.SQUARE_SIZE);
+		setHeight (CheckersGame.SQUARE_SIZE);
+		
 		relocate(x * CheckersGame.SQUARE_SIZE, y * CheckersGame.SQUARE_SIZE);
-
+		
 		setFill(light ? Color.valueOf("#ffffff") : Color.valueOf("#000000"));
 	}
 
