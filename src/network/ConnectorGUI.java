@@ -8,8 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 
-
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -232,13 +230,11 @@ public class ConnectorGUI extends JDialog implements ActionListener{
    
     
     public void show(){
-	    // Determine the new location of the window
 	    int w = getSize().width;
 	    int h = getSize().height;
 	    int x = (parent.getSize().width-w)/2+parent.getLocation().x;
 	    int y = (parent.getSize().height-h)/2+parent.getLocation().y;
 	    
-	    // Move the window
 	    setLocation(x, y);
         super.show();
     }
@@ -262,7 +258,7 @@ public class ConnectorGUI extends JDialog implements ActionListener{
             setJoinEnabled(joinButton.isSelected());
         }else if(event.getSource() == connectWait){
             if(validInput()){
-	            connectWait.setEnabled(false);//So they cant click again
+	            connectWait.setEnabled(false);
 	            if(hostButton.isSelected())
 	                setHostEnabled(false);
 	            if(joinButton.isSelected())
@@ -275,17 +271,13 @@ public class ConnectorGUI extends JDialog implements ActionListener{
             if(hostWait != null){
                 cancelHostWait();
             }else{
-                //Close Dialog
                 checkerBoard.networkCleanUp();
                 dispose();
             }
         }
     }
 
-
     private void createConnector() {
-        //Set up preferences before creating the object because the object
-        // creation will set up the network connection
         
         Connector connector;
         preferences.setGameID(-1);
@@ -310,10 +302,6 @@ public class ConnectorGUI extends JDialog implements ActionListener{
             connector.connect();
             dispose();
         }
-        
-        //We should be connected once we get here ?
-        //checkerBoard.networkStartGame();
-        //dispose();
     }
 
     private void showWarning(String message){
@@ -374,15 +362,9 @@ public class ConnectorGUI extends JDialog implements ActionListener{
     }
     
     private void startGame(){
-        //System.out.println("hostWait "+hostWait);
-        //System.out.println("connectWait "+connectWait.getText().equals("Waiting..."));
         if(hostWait != null && connectWait.getText().equals("Waiting...")){
-            //System.out.println("Bling thing");
-            //hostWait.stop();
 	        hostWait = null;
-	        //System.out.println("befoer start game");
 	        checkerBoard.networkStartGame();
-	        //System.out.println("Afta start game");
 	        dispose();
         }
     }
@@ -413,7 +395,6 @@ public class ConnectorGUI extends JDialog implements ActionListener{
             Connector connector = new Connector(Connector.HOST,checkerBoard);
             preferences.setConnector(connector);
             connector.connect();
-            //System.out.println("after connect");
             startGame();
         }
     }
@@ -421,6 +402,5 @@ public class ConnectorGUI extends JDialog implements ActionListener{
 
     public void dispose() {
         super.dispose();
-        //checkerBoard.networkCleanUp();
     }
 }

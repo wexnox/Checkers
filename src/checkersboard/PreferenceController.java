@@ -22,9 +22,11 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
 import network.Connector;
 
-public class PreferenceController extends JPanel implements ItemListener, ActionListener {
+public class PreferenceController extends Application implements ActionListener {
 
 	private JPanel red, black, displayColor;
 	private JComboBox chooseRed, chooseBlack;
@@ -47,78 +49,61 @@ public class PreferenceController extends JPanel implements ItemListener, Action
 	int gameID;
 
 	public PreferenceController(int w, int h) {
-		setPreferredSize(new Dimension(w, h));
+//		setPreferredSize(new Dimension(w, h));
 
-		redNetworkPlayer = false;
-		blackNetworkPlayer = false;
-
-		red = new JPanel();
-		red.setBorder(BorderFactory.createTitledBorder("Red Player"));
-		black = new JPanel();
-		black.setBorder(BorderFactory.createTitledBorder("Black Player"));
-
-		controller = new String[2];
-		controller[0] = "Choose.";
-		controller[1] = "Human.";
-
-		Dimension d = new Dimension(w, h / 4 + 10);
-
-		chooseRed = new JComboBox(controller);
-		chooseRed.addItemListener(this);
-		red.setPreferredSize(d);
-		red.add(chooseRed);
-		chooseBlack = new JComboBox(controller);
-		chooseBlack.addItemListener(this);
-		black.setPreferredSize(d);
-		black.add(chooseBlack);
-
-		hilightColor = new JButton("Change hilight color");
-		hilightColor.addActionListener(this);
-
-		displayColor = new JPanel();
-		displayColor.setPreferredSize(new Dimension(20, 20));
-		displayColor.setBackground(hilight);
-
-		add(black);
-		add(red);
-		add(hilightColor);
-		add(displayColor);
-
-		file = new File("Preferences.prf");
+//		redNetworkPlayer = false;
+//		blackNetworkPlayer = false;
+//
+//		red = new JPanel();
+//		red.setBorder(BorderFactory.createTitledBorder("Red Player"));
+//		black = new JPanel();
+//		black.setBorder(BorderFactory.createTitledBorder("Black Player"));
+//
+//		controller = new String[2];
+//		controller[0] = "Choose.";
+//		controller[1] = "Human.";
+//
+//		Dimension d = new Dimension(w, h / 4 + 10);
+//
+//		chooseRed = new JComboBox(controller);
+//		chooseRed.addItemListener(this);
+//		red.setPreferredSize(d);
+//		red.add(chooseRed);
+//		chooseBlack = new JComboBox(controller);
+//		chooseBlack.addItemListener(this);
+//		black.setPreferredSize(d);
+//		black.add(chooseBlack);
+//
+//		hilightColor = new JButton("Change hilight color");
+//		hilightColor.addActionListener(this);
+//
+//		displayColor = new JPanel();
+//		displayColor.setPreferredSize(new Dimension(20, 20));
+//		displayColor.setBackground(hilight);
+//
+//		add(black);
+//		add(red);
+//		add(hilightColor);
+//		add(displayColor);
+//
+//		file = new File("Preferences.prf");
 		loadValues();
 
 	}
 
-	// TODO Må forandres så dersom en velger sort så blir rød borte. ken hende denne er feil
-	public void itemStateChanged(ItemEvent event) {
-		Object item = event.getItem();
-		if (event.getSource() == chooseBlack) {
-			if (item == controller[0]) {
 
-			} else if (item == controller[1]) {
 
-			}
-		} else if (event.getSource() == chooseRed) {
-			if (item == controller[0]) {
-
-			} else if (item == controller[1]) {
-
-			}
-		}
-		repaint();
-	}
-
-	public void actionPerformed(ActionEvent event) {
-		if (event.getSource() == hilightColor) {
-			Color tempColor = JColorChooser.showDialog(this, "Choose Hilight Color", hilight);
-			if (!tempColor.equals(hilight)) {
-				saveToDisk = true;
-				changeMade = true;
-				hilight = tempColor;
-				displayColor.setBackground(hilight);
-			}
-		}
-	}
+//	public void actionPerformed(ActionEvent event) {
+//		if (event.getSource() == hilightColor) {
+//			Color tempColor = JColorChooser.showDialog(this, "Choose Hilight Color", hilight);
+//			if (!tempColor.equals(hilight)) {
+//				saveToDisk = true;
+//				changeMade = true;
+//				hilight = tempColor;
+//				displayColor.setBackground(hilight);
+//			}
+//		}
+//	}
 
 	public void savePreferences() {
 		if (saveToDisk) {
@@ -142,21 +127,21 @@ public class PreferenceController extends JPanel implements ItemListener, Action
 		}
 	}
 
-	public void doApply() {
-		boolean showWarning = false;
-		if (blackPlayer != chooseBlack.getSelectedIndex()) {
-			showWarning = true;
-			changeMade = true;
-			saveToDisk = true;
-		} else if (redPlayer != chooseRed.getSelectedIndex()) {
-			showWarning = true;
-			changeMade = true;
-			saveToDisk = true;
-		}
-		if (showWarning)
-			JOptionPane.showMessageDialog(this, "Player settings will not take effect until you start a new game",
-					"Alert", JOptionPane.WARNING_MESSAGE);
-	}
+//	public void doApply() {
+//		boolean showWarning = false;
+//		if (blackPlayer != chooseBlack.getSelectedIndex()) {
+//			showWarning = true;
+//			changeMade = true;
+//			saveToDisk = true;
+//		} else if (redPlayer != chooseRed.getSelectedIndex()) {
+//			showWarning = true;
+//			changeMade = true;
+//			saveToDisk = true;
+//		}
+//		if (showWarning)
+//			JOptionPane.showMessageDialog(this, "Player settings will not take effect until you start a new game",
+//					"Alert", JOptionPane.WARNING_MESSAGE);
+//	}
 
 	public void reset() {
 		changeMade = false;
@@ -289,6 +274,22 @@ public class PreferenceController extends JPanel implements ItemListener, Action
 			chooseRed.setEnabled(true);
 			chooseBlack.setEnabled(true);
 		}
+	}
+
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -28,13 +28,12 @@ public class Connector {
 	public static final int HOST = 0;
 	public static final int CLIENT = 1;
 
-//	private final String OP_CHAT = "0";
 	private final String OP_MOVE = "1";
 	private final String OP_ERROR = "2";
 	private final String OP_SETUP = "3";
 	private final String OP_ENDTURN = "4";
-	
-	public static final String DELIMETER = ""+(char)7;
+
+	public static final String DELIMETER = "" + (char) 7;
 	private Stage stage;
 
 	private PrintWriter out;
@@ -67,13 +66,11 @@ public class Connector {
 				sendSetup(preferences.getLocalUsername() + ",0");
 			}
 		} catch (UnknownHostException e) {
-//			JOptionPane.showMessageDialog(checkersBoard, "Unknown host, please check your spelling", "Unknown Host",
-//					JOptionPane.WARNING_MESSAGE);
+			new AlertDialog(stage, "Unknown host, please check your spelling!", AlertDialog.ICON_INFO).showAndWait();
 			checkersBoard.networkCleanUp();
 		} catch (IOException e) {
-			new AlertDialog(stage, "An error occured while connecting to the host!", AlertDialog.ICON_INFO).showAndWait();
-//			JOptionPane.showMessageDialog(checkersBoard, "An error occured while connecting to the host", "Error",
-//					JOptionPane.WARNING_MESSAGE);
+			new AlertDialog(stage, "An error occured while connecting to the host!", AlertDialog.ICON_INFO)
+					.showAndWait();
 			checkersBoard.networkCleanUp();
 		}
 	}
@@ -184,11 +181,10 @@ public class Connector {
 			} catch (IOException e) {
 				if (showDisconnectError) {
 					if (player == HOST) {
-//						JOptionPane.showMessageDialog(checkersBoard, "The client has been disconnected",
-//								"Lost connection", JOptionPane.WARNING_MESSAGE);
+						new AlertDialog(stage, "The client has been disconnected!", AlertDialog.ICON_INFO)
+								.showAndWait();
 					} else {
-//						JOptionPane.showMessageDialog(checkersBoard, "The host has been disconnected",
-//								"Lost connection", JOptionPane.WARNING_MESSAGE);
+						new AlertDialog(stage, "The host has been disconnected!", AlertDialog.ICON_INFO).showAndWait();
 					}
 				}
 				checkersBoard.networkCleanUp();
@@ -198,7 +194,7 @@ public class Connector {
 
 	public static void main(String[] args) {
 	}
-
+// closer con
 	public void destroyConnection() {
 		if (serverSocket != null) {
 			try {
@@ -224,7 +220,7 @@ public class Connector {
 		checkersBoard.networkCleanUp();
 		preferences.setConnector(null);
 	}
-
+// viser error
 	public void showDisconnectError(boolean b) {
 		showDisconnectError = b;
 	}
