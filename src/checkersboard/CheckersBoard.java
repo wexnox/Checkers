@@ -8,6 +8,8 @@ public class CheckersBoard extends Rectangle {
 
 	private Pieces pieces;
 	private PreferenceController preferences;
+	private int turn;
+	public final int RED = 1, BLUE = 2, STALE_MATE = 3;
 
 	public boolean hasPieces() {
 		return pieces != null;
@@ -37,29 +39,29 @@ public class CheckersBoard extends Rectangle {
 
 		//TODO what about network --> may not be a problem
 		if(turn == RED && preferences.isRedComputer()){
-			AI.doComputerMove(turn,checkers,preferences.getRedDifficulty());
+
 		}
 	}
 
-	public void setBottomControlPane(BottomControlPane bottomPane){
-		this.bottomPane = bottomPane;
-		bottomPane.displayMessage("Red Starts");
-	}
+//	public void setBottomControlPane(BottomControlPane bottomPane){
+//		this.bottomPane = bottomPane;
+//		bottomPane.displayMessage("Red Starts");
+//	}
 
 	public void networkDoMove(int fromRow,int fromCol,int toRow,int toCol){
-		if((turn == RED && preferences.isRedNetworkPlayer())||(turn == BLACK && preferences.isBlackNetworkPlayer())){
-			AI.doAnimatedMove(checkers,fromRow,fromCol,toRow,toCol);
+		if((turn == RED && preferences.isRedNetworkPlayer())||(turn == BLUE && preferences.isBlackNetworkPlayer())){
+//			AI.doAnimatedMove(checkers,fromRow,fromCol,toRow,toCol);
 		}
 	}
 
 	public void networkDoEndTurn(){
-		changeTurns();
-		bottomPane.disableTurnButton();
+//		changeTurns();
+//		bottomPane.disableTurnButton();
 	}
 
 	public void networkSendEndTurn(){
 		preferences.getConnector().sendEndTurn();
-		changeTurns();
+//		changeTurns();
 	}
 
 	public void networkSendMove(int fromRow,int fromCol,int toRow,int toCol){
@@ -70,7 +72,7 @@ public class CheckersBoard extends Rectangle {
 
 	public void networkStartGame() {
 		preferences.setupForNetworkGame();
-		newGame();
+//		newGame();
 		beginGame();
 	}
 
@@ -86,6 +88,30 @@ public class CheckersBoard extends Rectangle {
 			preferences.setConnector(null);
 		}
 	}
+
+
+//	public boolean doMove(int row, int col){
+//		if(selectedChecker != null){
+//			currentRecord = new MoveRecord(turn,
+//					selectedChecker.getRow(),
+//					selectedChecker.getCol(),
+//					row,col,selectedChecker.isKing());
+//			//Check for valid move and move there
+//			if(!validMove(row,col) && moveSingle)
+//				selectedChecker.setSelected(false);
+//			else{//Valid move
+//				checkForKingMe();
+//				return true;
+//			}
+//		}
+//		if(moveSingle){
+//			selectedChecker = checkers.getChecker(row,col);
+//			//Only select if it is your turn.
+//			if(selectedChecker != null && selectedChecker.getPieceType() == turn)
+//				selectedChecker.setSelected(true);
+//		}
+//		return false;
+//	}
 
 	public PreferenceController getPreferences() {
 		return preferences;

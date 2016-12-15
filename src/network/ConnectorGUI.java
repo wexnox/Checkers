@@ -36,12 +36,12 @@ public class ConnectorGUI extends JDialog implements ActionListener{
     private JPanel hostPanel;
     private JButton connectWait;
     private JButton cancel;
-    private PreferenceControls preferences;
-    private CheckerBoard checkerBoard;
+    private PreferenceController preferences;
+    private CheckersBoard checkersBoard;
     private ConnectionWaiter hostWait;
     private JFrame parent;
 
-    public ConnectorGUI(JFrame frame, String name, CheckerBoard checkerBoard){
+    public ConnectorGUI(JFrame frame, String name, CheckersBoard checkerBoard){
         super(frame,name,true);
         parent = frame;
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
@@ -52,7 +52,7 @@ public class ConnectorGUI extends JDialog implements ActionListener{
             preferences.getConnector().destroyConnection();
         }
 
-        this.checkerBoard = checkerBoard;
+        this.checkersBoard = checkerBoard;
         setResizable(false);
         JPanel temp,temp2;
 
@@ -268,7 +268,7 @@ public class ConnectorGUI extends JDialog implements ActionListener{
                 cancelHostWait();
             }else{
                 //Close Dialog
-                checkerBoard.networkCleanUp();
+                checkersBoard.networkCleanUp();
                 dispose();
             }
         }
@@ -289,7 +289,7 @@ public class ConnectorGUI extends JDialog implements ActionListener{
             preferences.setBlackNetworkPlayer(false);
             connectWait.setText("Waiting...");
             connectWait.disable();
-            hostWait = new ConnectionWaiter(checkerBoard);
+            hostWait = new ConnectionWaiter(checkersBoard);
             hostWait.start();
         }else{
             preferences.setLocalUsername(joinUserName.getText());
@@ -297,7 +297,7 @@ public class ConnectorGUI extends JDialog implements ActionListener{
             preferences.setIpAddress(joinHostIP.getText());
             preferences.setRedNetworkPlayer(false);
             preferences.setBlackNetworkPlayer(true);
-            connector = new Connector(Connector.CLIENT,checkerBoard);
+            connector = new Connector(Connector.CLIENT,checkersBoard);
             preferences.setConnector(connector);
             connector.connect();
             dispose();
@@ -309,10 +309,11 @@ public class ConnectorGUI extends JDialog implements ActionListener{
     }
 
     private void showWarning(String message){
-        JOptionPane.showMessageDialog(checkerBoard,
-                message,
-                "Error",
-                JOptionPane.WARNING_MESSAGE);
+//        Her må jeg legge inn en popup box
+//        JOptionPane.showMessageDialog(checkersBoard,
+//                message,
+//                "Error",
+//                JOptionPane.WARNING_MESSAGE);
     }
 
     private boolean validInput() {
@@ -373,7 +374,7 @@ public class ConnectorGUI extends JDialog implements ActionListener{
             //hostWait.stop();
             hostWait = null;
             //System.out.println("befoer start game");
-            checkerBoard.networkStartGame();
+            checkersBoard.networkStartGame();
             //System.out.println("Afta start game");
             dispose();
         }
@@ -395,14 +396,14 @@ public class ConnectorGUI extends JDialog implements ActionListener{
     }
 
     private class ConnectionWaiter extends Thread{
-        private CheckerBoard checkerBoard;
+        private CheckersBoard checkersBoard;
 
-        public ConnectionWaiter(CheckerBoard checkerBoard) {
-            this.checkerBoard = checkerBoard;
+        public ConnectionWaiter(CheckersBoard checkerBoard) {
+            this.checkersBoard = checkersBoard;
         }
 
         public void run(){
-            Connector connector = new Connector(Connector.HOST,checkerBoard);
+            Connector connector = new Connector(Connector.HOST,checkersBoard);
             preferences.setConnector(connector);
             connector.connect();
             //System.out.println("after connect");

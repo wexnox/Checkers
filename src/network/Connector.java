@@ -31,14 +31,14 @@ public class Connector {
     private PrintWriter out;
     private BufferedReader in;
     private Socket socket;
-    private CheckersBoard checkerBoard;
+    private CheckersBoard checkersBoard;
     private PreferenceController preferences;
     private InputListener inputThread;
     private ServerSocket serverSocket;
     private int player;
     private boolean showDisconnectError;
 
-    public Connector(int player,CheckersBoard checkerBoard){
+    public Connector(int player,CheckersBoard checkersBoard){
         this.checkersBoard = checkersBoard;
         preferences = checkersBoard.getPreferences();
         this.player = player;
@@ -64,17 +64,19 @@ public class Connector {
                 sendSetup(preferences.getLocalUsername()+",0");
             }
         } catch (UnknownHostException e) {
-            JOptionPane.showMessageDialog(checkersBoard,
-                    "Unknown host, please check your spelling",
-                    "Unknown Host",
-                    JOptionPane.WARNING_MESSAGE);
-            checkerBoard.networkCleanUp();
+            // Må sette inn box
+//            JOptionPane.showMessageDialog(checkersBoard,
+//                    "Unknown host, please check your spelling",
+//                    "Unknown Host",
+//                    JOptionPane.WARNING_MESSAGE);
+            checkersBoard.networkCleanUp();
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(checkersBoard,
-                    "An error occured while connecting to the host",
-                    "Error",
-                    JOptionPane.WARNING_MESSAGE);
-            checkerBoard.networkCleanUp();
+            // Må sette inn box
+//            JOptionPane.showMessageDialog(checkersBoard,
+//                    "An error occured while connecting to the host",
+//                    "Error",
+//                    JOptionPane.WARNING_MESSAGE);
+            checkersBoard.networkCleanUp();
         }
     }
 
@@ -91,10 +93,7 @@ public class Connector {
 
         temp = toke.nextToken();
 
-        if (temp.equals(OP_CHAT)){
-            doChat(toke.nextToken());
-        }
-        else if (temp.endsWith(OP_MOVE)){
+        if (temp.endsWith(OP_MOVE)){
             doMove(toke.nextToken());
         }
         else if (temp.equals(OP_ERROR)){
@@ -105,7 +104,7 @@ public class Connector {
             doSetup(toke.nextToken());
         }
         else if (temp.equals(OP_ENDTURN)){
-            doEndTurn();
+//            doEndTurn();
         }
         else {
             doError("Bad Opcode");
@@ -113,9 +112,9 @@ public class Connector {
     }
 
 
-    private void doEndTurn() {
-        checkersBoard.networkDoEndTurn();
-    }
+//    private void doEndTurn() {
+//        checkersBoard.networkDoEndTurn();
+//    }
 
     private void doSetup(String message) {
         StringTokenizer tokens = new StringTokenizer(message,",");
@@ -125,17 +124,13 @@ public class Connector {
             preferences.setGameID(id);
     }
 
-    private void doChat(String message){
-        checkersBoard.networkPrintChat(message);
-    }
-
     private void doMove(String message){
         StringTokenizer tokens = new StringTokenizer(message,",");
         int fRow = Integer.parseInt(tokens.nextToken());
         int fCol = Integer.parseInt(tokens.nextToken());
         int row = Integer.parseInt(tokens.nextToken());
         int col = Integer.parseInt(tokens.nextToken());
-        checkersBoard.networkDoMove(fRow,fCol,row,col);
+//        checkersBoard.networkDoMove(fRow,fCol,row,col);
     }
 
     private void doError(String message){
@@ -199,18 +194,20 @@ public class Connector {
             } catch (IOException e){
                 if(showDisconnectError){
                     if(player == HOST){
-                        JOptionPane.showMessageDialog(checkersBoard,
-                                "The client has been disconnected",
-                                "Lost connection",
-                                JOptionPane.WARNING_MESSAGE);
+                        // Må sette inn box
+//                        JOptionPane.showMessageDialog(checkersBoard,
+//                                "The client has been disconnected",
+//                                "Lost connection",
+//                                JOptionPane.WARNING_MESSAGE);
                     }else{
-                        JOptionPane.showMessageDialog(checkersBoard,
-                                "The host has been disconnected",
-                                "Lost connection",
-                                JOptionPane.WARNING_MESSAGE);
+                        // Må sette inn box
+//                        JOptionPane.showMessageDialog(checkersBoard,
+//                                "The host has been disconnected",
+//                                "Lost connection",
+//                                JOptionPane.WARNING_MESSAGE);
                     }
                 }
-                checkersBoard.networkCleanUp();
+//                CheckersBoard.networkCleanUp();
             }
         }
     }
@@ -237,7 +234,7 @@ public class Connector {
         if(out != null){
             out.close();
         }
-        checkersBoard.networkCleanUp();
+//        CheckersBoard.networkCleanUp();
         preferences.setConnector(null);
     }
 
