@@ -1,4 +1,4 @@
-package menu;
+package test;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -20,7 +20,7 @@ public class Main extends Application {
         window.setTitle("the new button");
 
         button = new Button("Clicking me hurts me");
-        button.setOnAction(event -> confirmBox.display("Title of window", "alter box sucks"));
+        button.setOnAction(event -> ConfirmBox.display("Title of window", "alter box sucks"));
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);

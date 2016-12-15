@@ -1,4 +1,4 @@
-package menu;
+package test;
 
 import javafx.stage.*;
 import javafx.scene.*;
@@ -6,7 +6,7 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.geometry.*;
 
-public class confirmBox {
+public class ConfirmBox {
 
     public static void display(String title, String message){
         Stage window = new Stage();
@@ -29,6 +29,3 @@ public class confirmBox {
         window.showAndWait();
     }
 }
-
-
-
