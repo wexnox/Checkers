@@ -93,7 +93,8 @@ public class CheckersGame extends Application {
 		Button btnNewGame = new Button("New Game");
 	    Button btnConcede = new Button("Concede");
 	    Button btnNetwork = new Button("Network");
-	    
+	    btnNetwork.setOnAction(e -> primaryStage.setScene(network));
+
 	    ToolBar toolBar = new ToolBar();
 	    toolBar.getItems().addAll( new Separator(), btnNewGame, btnConcede, btnNetwork);
 	    BorderPane pane = new BorderPane();
@@ -106,7 +107,8 @@ public class CheckersGame extends Application {
 	    primaryStage.show();
 
 		StackPane network = new StackPane();
-		network.getChildren().addAll();
+		network.getChildren().add(btnNetwork);
+		network  = new Scene(network, 200, 200);
 	}
 
 	

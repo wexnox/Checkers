@@ -24,7 +24,7 @@ public class ConnectorGUI extends Application {
     private Button cancel;
     private CheckersBoard checkersBoard;
 //    private ConnectionWaiter hostWait;
-    private Stage window;
+    private Stage stage;
     private Text text;
     private TextField textField;
     private Label label;
@@ -35,9 +35,10 @@ public class ConnectorGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        window = primaryStage;
-        window.setTitle("Network Setup");
-
+        StackPane network = new StackPane();
+        stage = primaryStage;
+        stage.setTitle("Network Setup");
+        stage
         Text t = new Text();
         t.setText("Host Port");
 //        TextField();
