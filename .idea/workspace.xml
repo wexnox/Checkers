@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09970605-2732-4c8a-a35c-82f58f8653f0" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/network/ConnectorGUI.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/AlertBox.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/ConfirmBox.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/Main.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/checkersboard/CheckersBoard.java" afterPath="$PROJECT_DIR$/src/checkersboard/CheckersBoard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/checkersboard/CheckersGame.java" afterPath="$PROJECT_DIR$/src/checkersboard/CheckersGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/menu/ConnectorGUI.java" afterPath="$PROJECT_DIR$/src/menu/ConnectorGUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/network/Connector.java" afterPath="$PROJECT_DIR$/src/network/Connector.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -97,24 +95,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Checkers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Checkers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Checkers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -536,7 +516,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1481804732041</updated>
-      <workItem from="1481804735480" duration="7057000" />
+      <workItem from="1481804735480" duration="7102000" />
     </task>
     <task id="LOCAL-00001" summary="Test">
       <created>1481804914063</created>
@@ -559,11 +539,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481808988820</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Cleaning">
+      <created>1481811824833</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1481811824833</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7057000" />
+    <option name="totallyTimeSpent" value="7102000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
