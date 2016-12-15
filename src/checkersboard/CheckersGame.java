@@ -13,7 +13,9 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import menu.ConnectorGUI;
 
 public class CheckersGame extends Application {
 
@@ -102,6 +104,9 @@ public class CheckersGame extends Application {
 	    primaryStage.setTitle("Dam spill - OBJ2000 Eksamen 2016");
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
+
+		StackPane network = new StackPane();
+		network.getChildren().addAll();
 	}
 
 	

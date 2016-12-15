@@ -24,11 +24,11 @@ public class CheckersBoard extends Rectangle implements KeyListener {
 
 	}
 
-	public void networkDoMove(int fromRow, int fromCol, int toRow, int toCol) {
-		if (turn == RED && preferences.isRedNetworkPlayer() || (turn == BLACK && preferences.isBlackNetworkPlayer())) {
-
-		}
-	}
+//	public void networkDoMove(int fromRow, int fromCol, int toRow, int toCol) {
+//		if (turn == RED && preferences.isRedNetworkPlayer() || (turn == BLACK && preferences.isBlackNetworkPlayer())) {
+//
+//		}
+//	}
 
 	public PreferenceController getPreferences() {
 		return preferences;
@@ -38,31 +38,15 @@ public class CheckersBoard extends Rectangle implements KeyListener {
 		// changeTurns();
 	}
 
-	public void networkSendEndTurn() {
-		preferences.getConnector().sendEndTurn();
-		// changeTurns();
-	}
-
-	public void networkSendMove(int fromRow, int fromCol, int toRow, int toCol) {
-		if (preferences.getConnector() != null) {
-			preferences.getConnector().sendMove(fromRow + "," + fromCol + "," + toRow + "," + toCol);
-		}
-	}
-
-	public void networkStartGame() {
-		preferences.setupForNetworkGame();
-		newGame();
-		beginGame();
-	}
+//	public void networkStartGame() {
+//		preferences.setupForNetworkGame();
+//		newGame();
+//		beginGame();
+//	}
 
 	public void networkCleanUp() {
 		if (preferences.getConnector() != null) {
-			preferences.setLocalUsername(null);
-			preferences.setRemoteUsername(null);
-			preferences.setGameID(-1);
 			preferences.setPort(-1);
-			preferences.setRedNetworkPlayer(false);
-			preferences.setBlackNetworkPlayer(false);
 			preferences.setConnector(null);
 		}
 	}

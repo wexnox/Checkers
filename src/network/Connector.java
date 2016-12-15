@@ -62,9 +62,9 @@ public class Connector {
             inputThread = new InputListener(in);
             inputThread.start();
             if (player == HOST) {
-                sendSetup(preferences.getLocalUsername() + "," + preferences.getGameID());
+
             } else {
-                sendSetup(preferences.getLocalUsername() + ",0");
+
             }
         } catch (UnknownHostException e) {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -90,19 +90,11 @@ public class Connector {
 
         temp = toke.nextToken();
         // get the game ID and make sure it's our game;
-        if (preferences.getGameID() != Integer.parseInt(temp) && preferences.getGameID() != -1) {
-            doError("Invalid Game ID, Continue playing at your own risk");
-        }
 
         temp = toke.nextToken();
 
-        if (temp.endsWith(OP_MOVE)) {
-            doMove(toke.nextToken());
-        } else if (temp.equals(OP_ERROR)) {
+        if (temp.equals(OP_ERROR)) {
             doError(toke.nextToken());
-        } else if (temp.equals(OP_SETUP)) {
-            System.out.println("setup");
-            doSetup(toke.nextToken());
         } else if (temp.equals(OP_ENDTURN)) {
             doEndTurn();
         } else {
@@ -114,45 +106,8 @@ public class Connector {
         checkersBoard.networkDoEndTurn();
     }
 
-    private void doSetup(String message) {
-        StringTokenizer tokens = new StringTokenizer(message, ",");
-        preferences.setRemoteUsername(tokens.nextToken());
-        int id = Integer.parseInt(tokens.nextToken());
-        if (id != 0)
-            preferences.setGameID(id);
-    }
-
-    private void doMove(String message) {
-        StringTokenizer tokens = new StringTokenizer(message, ",");
-        int fRow = Integer.parseInt(tokens.nextToken());
-        int fCol = Integer.parseInt(tokens.nextToken());
-        int row = Integer.parseInt(tokens.nextToken());
-        int col = Integer.parseInt(tokens.nextToken());
-        checkersBoard.networkDoMove(fRow, fCol, row, col);
-    }
-
     private void doError(String message) {
         System.err.println(message);
-    }
-
-    private void sendSetup(String message) {
-        String send = (preferences.getGameID() + DELIMETER + OP_SETUP + DELIMETER + message + "\n");
-        out.println(send);
-    }
-
-    public void sendMove(String message) {
-        System.out.println("Sending Move");
-        String send = (preferences.getGameID() + DELIMETER + OP_MOVE + DELIMETER + message + "\n");
-        out.println(send);
-    }
-
-    public void sendError(String message) {
-        String send = (preferences.getGameID() + DELIMETER + OP_ERROR + DELIMETER + message + "\n");
-        out.println(send);
-    }
-
-    public void sendEndTurn() {
-        out.println(preferences.getGameID() + DELIMETER + OP_ENDTURN + DELIMETER + "This is an end Turn\n");
     }
 
     protected void finalize() throws Throwable {
