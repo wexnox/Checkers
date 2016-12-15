@@ -20,7 +20,7 @@ public class Main extends Application {
         window.setTitle("the new button");
 
         button = new Button("Clicking me hurts me");
-        button.setOnAction(event -> ComfirmBox.display("Title of window", "alter box sucks"));
+        button.setOnAction(event -> confirmBox.display("Title of window", "alter box sucks"));
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button);
