@@ -24,7 +24,7 @@ import javax.swing.JPanel;
 
 import network.Connector;
 
-//TODO må konverteres til JavaFx
+//TODO mÃ¥ konverteres til JavaFx
 
 public class PreferenceController extends JPanel implements ItemListener, ActionListener {
 
@@ -91,7 +91,7 @@ public class PreferenceController extends JPanel implements ItemListener, Action
 
 	}
 
-	// TODO Må forandres så dersom en velger sort så blir rød borte. ken hende denne er feil
+	// TODO Mï¿½ forandres sï¿½ dersom en velger sort sï¿½ blir rï¿½d borte. ken hende denne er feil
 	public void itemStateChanged(ItemEvent event) {
 		Object item = event.getItem();
 		if (event.getSource() == chooseBlack) {
