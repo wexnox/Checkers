@@ -1,3 +1,2 @@
-# Checkers
-Checkers game
-IS-OBJ2000 Objektorient progr
+# IS-OBJ2000 Objektorient progr Eksamen
+## Checkers game
